@@ -8,7 +8,8 @@ class SessionController extends Controller
 {
     public function index()
     {
-        // $patients = Patient::all();
+        // return response()->json(['message' => 'Success'], 200);
+
         return view('sessions.index');
     }
     public function create()
