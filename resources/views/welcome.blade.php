@@ -3,6 +3,19 @@
 @section('content')
 <div class="container">
 <div class="row d-flex justify-content-center">
+
+    <div class="col-md-4">
+        <div class="card border-5">
+            <div class="card-body text-center">
+            <p class="fs-1 fw-bolder my-5 ">
+            Patients</p>
+            <a class="btn btn-info add-examination" href="{{ route('patients.create') }}">
+                Add Pateint</a>
+            </div>
+        </div>
+    </div>
+    <!-- <a href="{{ route('patients.index') }}">Patients</a> -->
+   <div class="d-flex justify-content-evenly my-3">
     <div class="col-md-4">
         <div class="card border-5 ">
             <div class="card-body text-center">
@@ -20,6 +33,7 @@
             <button class="btn btn-info add-examination">Add Session</button>
             </div>
         </div>
+    </div>
     </div>
 </div>
 </div>

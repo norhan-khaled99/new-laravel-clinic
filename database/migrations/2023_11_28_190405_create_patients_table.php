@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->integer('age');
             $table->number('phone_number');
+            $table->text('chronic_diseases');
+            $table->boolean('ct')->default(false);
             $table->string('patient_id')->unique()->default(time());
             $table->timestamps();
         });

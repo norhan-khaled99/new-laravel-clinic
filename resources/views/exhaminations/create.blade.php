@@ -1,70 +1,26 @@
-<!-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> -->
-
-
+@extends('layouts.app')
 
 @section('content')
-    <h1 class="text-center">Create Post</h1>
-    <div class="row justify-content-center my-3">
-        <div class="col-md-6">
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    <div class="container">
+        <h2>Add Examination</h2>
+        <form method="POST" action="{{ route('examinations.store') }}">
+            @csrf
 
-            <form method="POST" action="{{route('sessions.store')}}" enctype="multipart/form-data">
-                @csrf
-                <div>
-                    <h3>Patient Name</h3>
-                    @error('title')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="text" class="form-control" value="{{old('title')}}" name="title">
-                </div>
+            <div class="mb-3">
+                <label for="patient_id" class="form-label">Patient</label>
+                <select class="form-select" id="patient_id" name="patient_id" required>
+                    @foreach($patients as $patient)
+                        <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-                <div>
-                    <h3>Age</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="text" class="form-control" value="{{old('description')}}" name="description">
-                </div>
+            <div class="mb-3">
+                <label for="follow" class="form-label">Follow</label>
+                <input type="text" class="form-control" id="follow" name="follow" required>
+            </div>
 
-                
-                <div>
-                    <h3>phoneNumber</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="number" class="form-control" value="{{old('description')}}" name="description">
-                </div>
- 
-                <div>
-                    <h3>Follows</h3>
-                    @error('comment_body')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <textarea name="comment_body" id="comment_body" rows="3" required>{{ old('comment_body') }}</textarea>
-                </div>
-
-                <div>
-                  <h3>CT</h3>
-                  <label for="yes-no"></label>
-                    <select name="yes-no" id="yes-no">
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-          
-
-                <div class="d-block mx-auto my-3 text-center">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-primary">Add Examination</button>
+        </form>
     </div>
 @endsection

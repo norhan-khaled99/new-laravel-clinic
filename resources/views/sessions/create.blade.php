@@ -1,83 +1,54 @@
-@section('title')
-
-@endsection
-
-<!-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> -->
-
-
+@extends('layouts.app')
 
 @section('content')
-    <h1 class="text-center">Create Post</h1>
-    <div class="row justify-content-center my-3">
-        <div class="col-md-6">
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    <div class="container">
+    <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
 
-            <form method="POST" action="{{route('sessions.store')}}" enctype="multipart/form-data">
-                @csrf
-                <div>
-                    <h3>Patient Name</h3>
-                    @error('title')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="text" class="form-control" value="{{old('title')}}" name="title">
-                </div>
+        <form method="POST" action="{{ route('sessions.store') }}">
+            @csrf
 
-                <div>
-                    <h3>Age</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="text" class="form-control" value="{{old('description')}}" name="description">
-                </div>
+            <!-- <div class="mb-3">
+                <label for="patient_id" class="form-label">Patient</label>
+                <select class="form-select" id="patient_id" name="patient_id" required>
+                    @foreach($patients as $patient)
+                        <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                    @endforeach
+                </select>
+            </div> -->
+            <!--
+            <div class="mb-3">
+                <label for="doctor_id" class="form-label">Doctor</label>
+                <select class="form-select" id="doctor_id" name="doctor_id" required>
+                    @foreach($doctors as $doctor)
+                        <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                    @endforeach
+                </select>
+            </div> -->
 
-                
-                <div>
-                    <h3>phoneNumber</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="number" class="form-control" value="{{old('description')}}" name="description">
-                </div>
- 
-                <div>
-                    <h3>SessionDate</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="date" class="form-control" value="{{old('description')}}" name="description">
-                </div>
+            <div class="mb-3">
+                <label for="session_date" class="form-label">Session Date</label>
+                <input type="date" class="form-control" id="session_date" name="session_date" required>
+            </div>
 
-                <div>
-                    <h3>SessionNumber</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="date" class="form-control" value="{{old('description')}}" name="description">
-                </div>
-               
-                <div>
-                    <h3>Diagnostic</h3>
-                    @error('description')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    <input type="text" class="form-control" value="{{old('description')}}" name="description">
-                </div>
- 
-          
-                <div class="d-block mx-auto my-3 text-center">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
+            <div class="mb-3">
+                <label for="session_number" class="form-label">Session Number</label>
+                <input type="number" class="form-control" min="1" id="session_number" name="session_number" required>
+            </div>
 
-            </form>
-        </div>
+
+            <div class="mb-3">
+                <label for="diagnosis" class="form-label">Diagnosis</label>
+                <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" required></textarea>
+            </div>
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary">Add Session</button>
+            </div>
+        </form>
     </div>
+</div>
+</div>
+</div>
 @endsection
-

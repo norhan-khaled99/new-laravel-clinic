@@ -8,13 +8,11 @@ class SessionController extends Controller
 {
     public function index()
     {
-        // return response()->json(['message' => 'Success'], 200);
-
         return view('sessions.index');
     }
     public function create()
     {
-        return view();
+        return view('sessions.create');
     }
 
     public function store()
