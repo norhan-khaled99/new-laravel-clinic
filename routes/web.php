@@ -29,7 +29,6 @@ Route::get('/', function () {
 // Route::get('/patients/search', [PatientController::class, 'search'])->name('patients.search');
 
 
-Route::get('/test', [Test::class, 'index']);
 //route for seesion
 Route::get('/sessions', [SessionController::class, 'index'])->name('sessions.index');
 Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create')->middleware('auth');

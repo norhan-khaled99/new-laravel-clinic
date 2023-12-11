@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable = ['name', 'age', 'phone_number', 'chronic_diseases', 'ct'];
 
     public static function boot()
     {
@@ -18,5 +18,15 @@ class Patient extends Model
         static::creating(function ($patient) {
             $patient->patient_id = time();
         });
+    }
+
+    public function examinations()
+    {
+        return $this->hasMany(Examination::class);
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
     }
 }
