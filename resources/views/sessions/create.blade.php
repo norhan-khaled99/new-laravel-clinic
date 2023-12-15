@@ -10,15 +10,15 @@
         <form method="POST" action="{{ route('sessions.store') }}">
             @csrf
 
-            <!-- <div class="mb-3">
+             <div class="mb-3">
                 <label for="patient_id" class="form-label">Patient</label>
                 <select class="form-select" id="patient_id" name="patient_id" required>
                     @foreach($patients as $patient)
                         <option value="{{ $patient->id }}">{{ $patient->name }}</option>
                     @endforeach
                 </select>
-            </div> -->
-            <!--
+            </div>
+
             <div class="mb-3">
                 <label for="doctor_id" class="form-label">Doctor</label>
                 <select class="form-select" id="doctor_id" name="doctor_id" required>
@@ -26,7 +26,7 @@
                         <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                     @endforeach
                 </select>
-            </div> -->
+            </div>
 
             <div class="mb-3">
                 <label for="session_date" class="form-label">Session Date</label>

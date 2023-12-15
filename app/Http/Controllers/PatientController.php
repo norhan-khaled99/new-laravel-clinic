@@ -27,13 +27,19 @@ class PatientController extends Controller
 
         Patient::create($data);
 
-        return redirect()->route('patients.create')->with('success', 'Patient added successfully!');
+        return redirect()->route('patients.index')->with('success', 'Patient added successfully!');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // $patients = Patient::all();
-        return view('patients.index');
+        $search = $request->input('search');
+
+        $patients = Patient::when($search, function ($query) use ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        })->get();
+
+        return view('patients.index', ['patients' => $patients]);
+
     }
 
 

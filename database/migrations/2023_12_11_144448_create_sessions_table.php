@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('patient_id')->constrained('patients');
             $table->date('session_date');
             $table->integer('session_number');
-            $table->foreignId('doctor_id')->constrained('users');
+            $table->foreignId('doctor_id')->constrained('doctors');
             $table->text('diagnosis');
             $table->timestamps();
         });

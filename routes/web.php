@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ExaminationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 //all routes for patient
 Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
 Route::get('/patients/create', [PatientController::class, 'create'])->name('patients.create');
@@ -26,7 +28,6 @@ Route::post('/patients', [PatientController::class, 'store'])->name('patients.st
 Route::get('/patients/edit/{id}', [PatientController::class, 'edit'])->name('patients.edit');
 Route::put('/patients/{id}', [PatientController::class, 'update'])->name('patients.update');
 Route::delete('/patients/{id}', [PatientController::class, 'delete'])->name('patients.delete');
-Route::get('/patients/search', [PatientController::class, 'search'])->name('patients.search');
 
 
 //route for seesion
@@ -36,7 +37,15 @@ Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.st
 Route::get('/sessions/edit/{id}', [SessionController::class, 'edit'])->name('sessions.edit');
 Route::put('/sessions/{id}', [SessionController::class, 'update'])->name('sessions.update');
 Route::delete('/sessions/{id}', [SessionController::class, 'delete'])->name('sessions.delete');
-//
+
+
+//ROUTES FOR EXHAMIATION
+Route::get('/exhamination', [ExaminationController::class, 'index'])->name('examination.index');
+Route::get('/exhamination/create', [ExaminationController::class, 'create'])->name('examination.create');
+Route::post('/exhamination', [ExaminationController::class, 'store'])->name('examination.store');
+Route::get('/exhamination/edit/{id}', [ExaminationController::class, 'edit'])->name('examination.edit');
+Route::put('/exhamination/{id}', [ExaminationController::class, 'update'])->name('examination.update');
+Route::delete('/exhamination/{id}', [ExaminationController::class, 'delete'])->name('examination.delete');
 
 
 // Auth::routes();

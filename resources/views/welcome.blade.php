@@ -14,23 +14,24 @@
             </div>
         </div>
     </div>
-    <!-- <a href="{{ route('patients.index') }}">Patients</a> -->
+
    <div class="d-flex justify-content-evenly my-3">
     <div class="col-md-4">
         <div class="card border-5 ">
             <div class="card-body text-center">
             <p class="fs-1 fw-bolder my-5 ">
             examination</p>
-            <a class="btn btn-info add-examination" href="{{ route('sessions.index') }}">
+            <a class="btn btn-info add-examination" href="{{ route('exhamination.create') }}">
                 Add examination</a>
             </div>
         </div>
     </div>
+
     <div class="col-md-4">
         <div class="card border-5">
             <div class="card-body text-center">
             <p class="fs-1 fw-bolder my-5">Session</p>
-            <button class="btn btn-info add-examination">Add Session</button>
+            <a class="btn btn-info add-examination" href="{{ route('sessions.create') }}">Add Session</a>
             </div>
         </div>
     </div>

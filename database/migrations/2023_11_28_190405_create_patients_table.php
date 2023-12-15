@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->string('name');
             $table->integer('age');
             $table->string('phone_number');
             $table->text('chronic_diseases');
-            $table->boolean('ct')->default(false);
+            $table->enum('ct', ['yes', 'no'])->default('no');
             $table->string('patient_id')->unique()->default(time());
+//            $table->string('patient_id')->unique()->default(now()->timestamp);
+
             $table->timestamps();
         });
     }
