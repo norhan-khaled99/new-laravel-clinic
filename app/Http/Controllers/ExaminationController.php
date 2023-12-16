@@ -11,8 +11,9 @@ class ExaminationController extends Controller
 {
     public function index()
     {
+        $examination=Examination::all();
         // $patients = Patient::all();
-        return view('examinations.index');
+        return view('examinations.index',compact('examination'));
     }
     public function create()
     {

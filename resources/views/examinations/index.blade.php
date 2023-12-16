@@ -6,14 +6,13 @@
     <div class="container">
         <div class="d-flex justify-content-end">
             <button class="btn btn-info my-3" onclick="window.location.href='{{ url('/') }}'">Back to Homepage</button>
-
         </div>
 
-        <h2 >List of Patients</h2>
+        <h2>List of Examinations</h2>
 
-        <form action="{{ route('patients.index') }}" method="GET" class="mb-4">
+        <form action="{{ route('examination.index') }}" method="GET" class="mb-4">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search patients..." name="search">
+                <input type="text" class="form-control" placeholder="Search examinations..." name="search">
                 <button class="btn btn-outline-secondary" type="submit">Search</button>
             </div>
         </form>
@@ -22,24 +21,18 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Phone Number</th>
-                <th>Chronic Diseases</th>
-                <th>CT</th>
+                <th>Patient</th>
+                <th>Follow</th>
             </tr>
             </thead>
             <tbody>
-{{--            @foreach($patients as $patient)--}}
-{{--                <tr>--}}
-{{--                    <td>{{ $patient->patient_id }}</td>--}}
-{{--                    <td>{{ $patient->name }}</td>--}}
-{{--                    <td>{{ $patient->age }}</td>--}}
-{{--                    <td>{{ $patient->phone_number }}</td>--}}
-{{--                    <td>{{ $patient->chronic_diseases }}</td>--}}
-{{--                    <td>{{ $patient->ct }}</td>--}}
-{{--                </tr>--}}
-{{--            @endforeach--}}
+            @foreach($examination as $exam)
+                <tr>
+                    <td>{{ $exam->id }}</td>
+                    <td>{{ $exam->patient->name }}</td>
+                    <td>{{ $exam->follow }}</td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
