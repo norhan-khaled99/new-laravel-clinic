@@ -12,7 +12,6 @@ class ExaminationController extends Controller
     public function index()
     {
         $examination=Examination::all();
-        // $patients = Patient::all();
         return view('examinations.index',compact('examination'));
     }
     public function create()
@@ -36,15 +35,28 @@ class ExaminationController extends Controller
     }
     public function delete($id)
     {
-        return view();
+        $examination=Examination::find();
+        if(!$examination){
+            return redirect()->route('examination.index')->with('error', 'Session not found.');
+        }
+        $examination->delete();
+        return redirect()->route('examination.index')->with('success', 'Session deleted successfully.');
     }
     public function edit($id)
     {
-        return view();
+        $examination=Examination::find($id);
+        return view('examinations.edit',compact('examination'));
     }
-    public function update(Request $request )
+    public function update(Request $request ,$id)
     {
-        return view();
+        $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'follow' => 'required|string',
+        ]);
+        $examination = Examination::find($id);
+        $examination->update($request->all());
+
+        return redirect()->route('examination.index')->with('success', 'Examination updated successfully!');
     }
 
 }

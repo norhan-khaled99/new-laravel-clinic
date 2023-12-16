@@ -49,15 +49,41 @@ class SessionController extends Controller
 
     public function edit($id)
     {
-        $session=Session::find($id);
-        if (!$session) {
-            return redirect()->route('sessions.index')->with('error', 'Session not found.');
-        }
-        return view('sessions.edit', ['session' => $session]);
+        $session = Session::findOrFail($id);
+        $patients = Patient::all();
+        $doctors = Doctor::all();
 
+        return view('sessions.edit', compact('session', 'patients', 'doctors'));
     }
-    public function update(Request $request , $id)
+    // public function update(Request $request , $id)
+    // {
+    //     $request->validate([
+    //         'patient_id' => 'required|exists:patients,id',
+    //         'session_date' => 'required|date',
+    //         'session_number' => 'required|integer',
+    //         'doctor_id' => 'required|exists:doctors,id',
+    //         'diagnosis' => 'required|string',
+    //     ]);
+
+    //     Session::where('id', $id)->update($request->all());
+
+    //     return redirect()->route('sessions.index')->with('success', 'Session updated successfully!');
+    // }
+    public function update(Request $request, $id)
     {
-        return view();
+        $request->validate([
+            'patient_id' => 'required|exists:patients,id',
+            'session_date' => 'required|date',
+            'session_number' => 'required|integer',
+            'doctor_id' => 'required|exists:doctors,id',
+            'diagnosis' => 'required|string',
+        ]);
+
+    $data = $request->only(['patient_id', 'session_date', 'session_number', 'doctor_id', 'diagnosis']);
+
+    Session::where('id', $id)->update($data);
+
+    return redirect()->route('sessions.index')->with('success', 'Session updated successfully!');
     }
+
 }
