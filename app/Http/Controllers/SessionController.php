@@ -11,16 +11,11 @@ class SessionController extends Controller
 {
     public function index()
     {
+        $patients=Patient::all();
         $sessions=Session::all();
-        return view('sessions.index',compact('sessions'));
+        return view('sessions.index',compact('sessions','patients'));
     }
-//    public function create()
-//    {
-//        $patients = Patient::all(); // Fetch all patients (adjust this query as needed)
-//
-//        return view('sessions.create', ['patients' => $patients]);
-////        return view('sessions.create');
-//    }
+
     public function create()
     {
         $patients = Patient::all();
@@ -40,7 +35,8 @@ class SessionController extends Controller
         ]);
 
         Session::create($data);
-        return redirect()->route('sessions.index')->with('success', 'Patient added successfully!');    }
+        return redirect()->route('sessions.index')->with('success', 'Patient added successfully!');
+    }
     public function delete($id)
     {
         $session = Session::find($id);

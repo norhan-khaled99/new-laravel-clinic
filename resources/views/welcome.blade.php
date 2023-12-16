@@ -21,7 +21,7 @@
             <div class="card-body text-center">
             <p class="fs-1 fw-bolder my-5 ">
             examination</p>
-            <a class="btn btn-info add-examination" href="{{ route('exhamination.create') }}">
+            <a class="btn btn-info add-examination" href="{{ route('examination.create') }}">
                 Add examination</a>
             </div>
         </div>

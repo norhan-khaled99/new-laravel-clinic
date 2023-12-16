@@ -40,7 +40,7 @@ Route::delete('/sessions/{id}', [SessionController::class, 'delete'])->name('ses
 
 
 //ROUTES FOR EXHAMIATION
-Route::get('/exhamination', [ExaminationController::class, 'index'])->name('examination.index');
+Route::get('/examination', [ExaminationController::class, 'index'])->name('examination.index');
 Route::get('/exhamination/create', [ExaminationController::class, 'create'])->name('examination.create');
 Route::post('/exhamination', [ExaminationController::class, 'store'])->name('examination.store');
 Route::get('/exhamination/edit/{id}', [ExaminationController::class, 'edit'])->name('examination.edit');
@@ -48,6 +48,6 @@ Route::put('/exhamination/{id}', [ExaminationController::class, 'update'])->name
 Route::delete('/exhamination/{id}', [ExaminationController::class, 'delete'])->name('examination.delete');
 
 
-// Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

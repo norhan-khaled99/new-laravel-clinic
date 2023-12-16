@@ -1,12 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    index for list all session
-<p>hello from session</p>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-<table class="table table-bordered table-condensed ">
+    <div class="container">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-info my-3" onclick="window.location.href='{{ url('/') }}'">Back to Homepage</button>
+        </div>
 
-</table>
-</div>
+        <h2>List of Sessions</h2>
+
+        <form action="{{ route('sessions.index') }}" method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search sessions..." name="search">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </form>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th>Session Date</th>
+                <th>Session Number</th>
+                <th>Doctor Name</th>
+                <th>Diagnosis</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($sessions as $session)
+                <tr>
+                    <td>{{ $session->id }}</td>
+                    <!-- <td>{{ $session->patient->name }}</td> -->
+                    <td>{{ $session->patient ? $session->patient->name : 'N/A' }}</td>
+                    <td>{{ $session->session_date }}</td>
+                    <td>{{ $session->session_number }}</td>
+                    <td>{{ $session->doctor->name }}</td>
+                    <td>{{ $session->diagnosis }}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

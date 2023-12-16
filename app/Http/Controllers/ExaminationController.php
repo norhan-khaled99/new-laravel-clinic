@@ -12,13 +12,12 @@ class ExaminationController extends Controller
     public function index()
     {
         // $patients = Patient::all();
-        return view();
+        return view('examinations.index');
     }
     public function create()
     {
         $patients = Patient::all();
-
-        return view('exhaminations.create', compact('patients'));
+        return view('examinations.create', compact('patients'));
     }
 
     public function store(Request $request)
@@ -29,7 +28,6 @@ class ExaminationController extends Controller
             'follow' => 'required|string',
         ]);
 
-        // Create a new Examination instance and fill it with the validated data
         $examination = Examination::create($data);
 
         // Redirect to a specific route or view
