@@ -6,7 +6,7 @@
         <div class="container">
             <div class="d-flex justify-content-end">
                 <button class="btn btn-info my-3" onclick="window.location.href='{{ url('/') }}'">Back to Homepage</button>
-    
+
             </div>
 
             <h2 >List of Patients</h2>
@@ -27,6 +27,7 @@
                     <th>Phone Number</th>
                     <th>Chronic Diseases</th>
                     <th>CT</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,15 @@
                         <td>{{ $patient->phone_number }}</td>
                         <td>{{ $patient->chronic_diseases }}</td>
                         <td>{{ $patient->ct }}</td>
+                        <td>
+                            <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('patients.delete', $patient->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this patients?')">Delete</button>
+                            </form>
+                        </td>
+
                     </tr>
                 @endforeach
                 </tbody>

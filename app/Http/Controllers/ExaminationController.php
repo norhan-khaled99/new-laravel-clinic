@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\Examination;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class ExaminationController extends Controller
 {
@@ -30,7 +31,6 @@ class ExaminationController extends Controller
 
         $examination = Examination::create($data);
 
-        // Redirect to a specific route or view
         return redirect()->route('examination.index')->with('success', 'Examination added successfully!');
     }
     public function delete($id)
@@ -57,6 +57,17 @@ class ExaminationController extends Controller
         $examination->update($request->all());
 
         return redirect()->route('examination.index')->with('success', 'Examination updated successfully!');
+    }
+
+    public function countExaminationsInWeek()
+    {
+
+        $startDate = Carbon::now()->startOfWeek();
+        $endDate = Carbon::now()->endOfWeek();
+
+        $examinationCount = Examination::whereBetween('created_at', [$startDate, $endDate])->count();
+
+        return view('examinations.count_in_week', compact('examinationCount'));
     }
 
 }

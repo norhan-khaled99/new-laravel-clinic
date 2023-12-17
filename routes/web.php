@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\DoctorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,22 @@ Route::post('/exhamination', [ExaminationController::class, 'store'])->name('exa
 Route::get('/exhamination/edit/{id}', [ExaminationController::class, 'edit'])->name('examination.edit');
 Route::put('/exhamination/{id}', [ExaminationController::class, 'update'])->name('examination.update');
 Route::delete('/exhamination/{id}', [ExaminationController::class, 'delete'])->name('examination.delete');
+Route::get('/examinations/count-in-week',[ExaminationController::class, 'countExaminationsInWeek'])->name('examinations.count_in_week');
+
+
+//routes for doctors
+Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');
+Route::get('/doctors/create', [DoctorController::class, 'create'])->name('doctors.create');
+Route::post('/doctors', [DoctorController::class, 'store'])->name('doctors.store');
+Route::get('/doctors/edit/{id}', [DoctorController::class, 'edit'])->name('doctors.edit');
+Route::put('/doctors/{id}', [DoctorController::class, 'update'])->name('doctors.update');
+Route::delete('/doctors/{id}', [DoctorController::class, 'delete'])->name('doctors.delete');
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/homePageAdmin', function () {
+    return view('admin.homePageforAdmin');
+});

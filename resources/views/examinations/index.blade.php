@@ -23,6 +23,7 @@
                 <th>ID</th>
                 <th>Patient</th>
                 <th>Follow</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +32,15 @@
                     <td>{{ $exam->id }}</td>
                     <td>{{ $exam->patient->name }}</td>
                     <td>{{ $exam->follow }}</td>
+                    <td>
+                        <a href="{{ route('examination.edit', $exam->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('examination.delete', $exam->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this examination?')">Delete</button>
+                        </form>
+                    </td>
+
                 </tr>
             @endforeach
             </tbody>

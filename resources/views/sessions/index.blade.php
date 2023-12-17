@@ -26,18 +26,28 @@
                 <th>Session Number</th>
                 <th>Doctor Name</th>
                 <th>Diagnosis</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($sessions as $session)
                 <tr>
                     <td>{{ $session->id }}</td>
-                    <!-- <td>{{ $session->patient->name }}</td> -->
-                    <td>{{ $session->patient ? $session->patient->name : 'N/A' }}</td>
+                     <td>{{ $session->patient->name }}</td>
                     <td>{{ $session->session_date }}</td>
                     <td>{{ $session->session_number }}</td>
                     <td>{{ $session->doctor->name }}</td>
                     <td>{{ $session->diagnosis }}</td>
+                    <td>
+                        <a href="{{ route('sessions.edit', $session->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('sessions.delete', $session->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this session?')">Delete</button>
+                        </form>
+                    </td>
+
+
                 </tr>
             @endforeach
             </tbody>

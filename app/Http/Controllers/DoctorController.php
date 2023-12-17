@@ -10,13 +10,13 @@ class DoctorController extends Controller
 {
     public function create()
     {
-     return view('doctor.create');
+     return view('doctors.create');
     }
 
     public function index()
     {
         $doctor=Doctor::all();
-        return view('doctor.index',compact('doctor'));
+        return view('doctors.index',compact('doctor'));
     }
     public function store(Request $request)
     {
@@ -49,8 +49,11 @@ class DoctorController extends Controller
     public function delete($id)
     {
         $doctor=Doctor::find($id);
+        if(!$doctor){
+            return redirect()->route('doctors.index')->with('error', 'doctor not found.');
+        }
         $doctor->delete();
-        return redirect()->route('examination.index')->with('success', 'doctor deleted successfully.');
+        return redirect()->route('doctors.index')->with('success', 'doctor deleted successfully.');
 
     }
 }
