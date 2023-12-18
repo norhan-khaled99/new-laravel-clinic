@@ -27,7 +27,10 @@
                     <th>Phone Number</th>
                     <th>Chronic Diseases</th>
                     <th>CT</th>
+                    @if(auth()->user() && auth()->user()->role == 'admin')
                     <th>Actions</th>
+                    @endif
+
                 </tr>
                 </thead>
                 <tbody>
@@ -39,6 +42,7 @@
                         <td>{{ $patient->phone_number }}</td>
                         <td>{{ $patient->chronic_diseases }}</td>
                         <td>{{ $patient->ct }}</td>
+                        @if(auth()->user() && auth()->user()->role == 'admin')
                         <td>
                             <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('patients.delete', $patient->id) }}" method="POST" class="d-inline">
@@ -47,7 +51,7 @@
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this patients?')">Delete</button>
                             </form>
                         </td>
-
+                        @endif
                     </tr>
                 @endforeach
                 </tbody>

@@ -48,10 +48,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('sessions.index')}}">Sessions</a>
                         </li>
-
+                        @if(auth()->user() && auth()->user()->role == 'admin')
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('doctors.index')}}">Doctors</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

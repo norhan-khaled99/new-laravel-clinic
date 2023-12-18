@@ -12,7 +12,7 @@
                         <div class="card-body text-center">
                             <p class="fs-1 fw-bolder my-5 ">
                                 Doctors</p>
-                            <a class="btn btn-info add-examination" href="{{ route('doctors.create') }}">
+                            <a class="btn  add-examination" href="{{ route('doctors.create') }}">
                                 Add doctor</a>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                     <div class="card-body text-center">
                         <p class="fs-1 fw-bolder my-5 ">
                             Patients</p>
-                        <a class="btn btn-info add-examination" href="{{ route('patients.create') }}">
+                        <a class="btn  add-examination" href="{{ route('patients.create') }}">
                             Add Pateint</a>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                         <div class="card-body text-center">
                             <p class="fs-1 fw-bolder my-5 ">
                                 examination</p>
-                            <a class="btn btn-info add-examination" href="{{ route('examination.create') }}">
+                            <a class="btn  add-examination" href="{{ route('examination.create') }}">
                                 Add examination</a>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="card border-5">
                         <div class="card-body text-center">
                             <p class="fs-1 fw-bolder my-5">Session</p>
-                            <a class="btn btn-info add-examination" href="{{ route('sessions.create') }}">Add Session</a>
+                            <a class="btn  add-examination" href="{{ route('sessions.create') }}">Add Session</a>
                         </div>
                     </div>
                 </div>

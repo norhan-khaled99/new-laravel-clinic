@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <div class="container">
+<div class="container">
 <div class="row d-flex justify-content-center">
 
     <div class="col-md-4">

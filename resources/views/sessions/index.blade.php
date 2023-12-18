@@ -26,7 +26,9 @@
                 <th>Session Number</th>
                 <th>Doctor Name</th>
                 <th>Diagnosis</th>
+                @if(auth()->user() && auth()->user()->role == 'admin')
                 <th>Actions</th>
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -38,16 +40,16 @@
                     <td>{{ $session->session_number }}</td>
                     <td>{{ $session->doctor->name }}</td>
                     <td>{{ $session->diagnosis }}</td>
-                    <td>
-                        <a href="{{ route('sessions.edit', $session->id) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('sessions.delete', $session->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this session?')">Delete</button>
-                        </form>
-                    </td>
-
-
+                    @if(auth()->user() && auth()->user()->role == 'admin')
+                            <td>
+                                <a href="{{ route('sessions.edit', $session->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('sessions.delete', $session->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this session?')">Delete</button>
+                                </form>
+                            </td>
+                    @endif
                 </tr>
             @endforeach
             </tbody>
